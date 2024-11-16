@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-2m)8*-i+ew3e16eb#e6i24$37(f)**g0ckm0a(&ffe-fg=jmc6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mozaaar.pythonanywhere.com', 'localhost', '127.0.0.1']
 
 
 # Application definition

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Envío para Eliminar</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa; /* Fondo claro */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            position: relative; /* Para posicionar el botón */
+        }
+        h1 {
+            color: #343a40; /* Color oscuro */
+            margin-bottom: 30px; /* Espacio entre el título y el formulario */
+        }
+        .btn-danger {
+            margin-top: 20px; /* Espacio entre el formulario y el botón de eliminar */
+        }
+        .btn-regresar {
+            position: absolute; /* Posición absoluta */
+            top: 20px; /* Espacio desde la parte superior */
+            right: 20px; /* Espacio desde la derecha */
+            background-color: #6c757d; /* Color gris */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .btn-regresar:hover {
+            background-color: #5a6268; /* Color gris oscuro al pasar el mouse */
+        }
+        .list-group-item {
+            background-color: #e9ecef; /* Color de fondo de los elementos de la lista */
+            border: none;
+        }
+        .list-group-item:hover {
+            background-color: #ced4da; /* Color de fondo al pasar el mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="{% url 'menu' %}" class="btn-regresar">Volver al Inicio</a>
+        <h1>Seleccionar Envío para Eliminar</h1>
+        <form method="post" class="mb-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="envio_id">Ingrese el ID del envío a eliminar:</label>
+                <input type="number" name="envio_id" id="envio_id" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-danger">Eliminar</button>
+        </form>
+
+        <h2>Lista de Envíos</h2>
+        <ul class="list-group">
+            {% for envio in envios %}
+                <li class="list-group-item">ID: {{ envio.id }} - {{ envio.descripcion }}</li> <!-- Cambia 'descripcion' por el campo que desees mostrar -->
+            {% empty %}
+                <li class="list-group-item text-center">No hay envíos disponibles.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

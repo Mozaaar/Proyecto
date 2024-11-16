@@ -52,6 +52,20 @@
         .form-group input[type="submit"]:hover {
             background-color: #A87979;
         }
+        .btn-regresar {
+            background-color: #BC8F8F;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-align: center;
+            margin: 20px 0;
+            text-decoration: none;
+        }
+        .btn-regresar:hover {
+            background-color: #A87979;
+        }
     </style>
     <script>
         function copyAddress() {
@@ -85,6 +99,8 @@
     </script>
 </head>
 <body>
+    <a href="{% url 'menu' %}" class="btn-regresar">Regresar al Menú</a>
+
     <h2>Nuevo Envío</h2>
     
     <form method="post">
@@ -149,5 +165,7 @@
             <input type="submit" name="save_paquete" value="Guardar Paquete">
         </div>
     </form>
+
+    <a href="{% url 'menu' %}" class="btn-regresar">Regresar al Menú</a>
 </body>
 </html>

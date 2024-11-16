@@ -1,16 +1,20 @@
+from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView, View
 from django.contrib.messages.views import SuccessMessageMixin
-from django.urls import reverse_lazy
+from django.urls import reverse_lazy, reverse
 from django.utils import timezone
 from django.contrib import messages
 import random
 from .models import Factura, Envio
 from .forms import ZonaForm, ClienteForm, ServicioForm, FacturaForm, PagoForm, EnvioForm, PaqueteForm
 
+class RedirectToMenuView(View):
+    def get(self, request, *args, **kwargs):
+        return HttpResponseRedirect(reverse('menu'))
+
 def menu_vista(request):
     return render(request, 'menu.html')
-
 
 class NuevoEnvioView(View):
     def get(self, request, *args, **kwargs):
@@ -117,7 +121,15 @@ class ListarEnviosView(ListView):
     model = Envio
     template_name = 'listar_envios.html'  # Nombre de tu plantilla
     context_object_name = 'envios'
-    
+
+class SeleccionarActualizarEnvioView(View):
+    def get(self, request):
+        envios = Envio.objects.all()  # Obtener todos los envíos
+        return render(request, 'seleccionar_actualizar_envio.html', {'envios': envios})
+
+    def post(self, request):
+        envio_id = request.POST.get('envio_id')
+        return redirect('actualizar_envio', pk=envio_id)
 class ActualizarEnvioView(SuccessMessageMixin, UpdateView):
     model = Envio
     form_class = EnvioForm
@@ -125,6 +137,15 @@ class ActualizarEnvioView(SuccessMessageMixin, UpdateView):
     success_url = reverse_lazy('listar_envios')
     success_message = "¡Envío actualizado exitosamente!"
     context_object_name = 'envio'
+class SeleccionarEliminarEnvioView(View):
+     def get(self, request):
+        envios = Envio.objects.all()  # Obtener todos los envíos
+        return render(request, 'seleccionar_eliminar_envio.html', {'envios': envios})
+
+     def post(self, request):
+        envio_id = request.POST.get('envio_id')
+        return redirect('eliminar_envio', pk=envio_id)
+
 class EliminarEnvioView(DeleteView):
     model = Envio
     template_name = 'eliminar_envio.html'  # Aquí se especifica la plantilla de confirmación

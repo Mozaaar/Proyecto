@@ -9,21 +9,26 @@
 <body>
     <div class="container mt-5">
         <h1>Actualizar Envío</h1>
-        <a href="{% url 'listar_envios' %}" class="btn btn-primary mb-3">Volver a la Lista de Envíos</a>
+        <a href="{% url 'menu' %}" class="btn btn-primary mb-3">Volver al Menú</a> <!-- Cambiar 'menu' por el nombre real de tu vista -->
 
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}  <!-- Asegúrate de que el formulario esté bien definido -->
-            <button type="submit" class="btn btn-success">Actualizar Envío</button>
+            <div class="form-group">
+                <label for="envio_id">ID Envío:</label>
+                <input type="text" class="form-control" id="envio_id" value="{{ envio.id }}" readonly>
+            </div>
+
+            <!-- Renderiza el formulario con los campos del objeto Envio -->
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">Actualizar</button>
         </form>
 
-        {% if messages %}
-            <div class="alert alert-success mt-3">
-                {% for message in messages %}
-                    {{ message }}
-                {% endfor %}
-            </div>
-        {% endif %}
+        <a href="{% url 'listar_envios' %}" class="btn btn-secondary mt-3">Cancelar</a> <!-- Enlace para cancelar y volver a la lista -->
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

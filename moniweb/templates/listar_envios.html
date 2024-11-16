@@ -4,6 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Envíos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Fondo blanco */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            background-color: #BC8F8F; /* Marrón rosado */
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            margin: 0;
+        }
+        .container {
+            padding: 20px;
+            width: 80%;
+            max-width: 1000px;
+            margin-top: 20px;
+        }
+        .btn-primary {
+            background-color: #BC8F8F;
+            border-color: #BC8F8F;
+        }
+        .btn-primary:hover {
+            background-color: #A87979;
+            border-color: #A87979;
+        }
+        .table {
+            width: 100%;
+            margin-bottom: 1rem;
+            color: #333;
+            border-collapse: collapse;
+        }
+        .table th,
+        .table td {
+            padding: 12px;
+            vertical-align: middle;
+            border-top: 1px solid #dee2e6;
+            text-align: left;
+        }
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: 2px solid #dee2e6;
+            background-color: #BC8F8F; /* Marrón rosado */
+            color: white;
+        }
+        .table tbody tr:nth-of-type(odd) {
+            background-color: #f9f9f9;
+        }
+        .table tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
@@ -29,8 +88,8 @@
                     <td>{{ envio.fecha_envio }}</td>
                     <td>{{ envio.fecha_entrega }}</td>
                     <td>{{ envio.estado_envio }}</td>
-                    <td>{{ envio.id_factura.id_servicio.id_servicio }}</td>
-                    <td>{{ envio.numero_guia }}</td>
+                    <td>{{ envio.id_factura.id_servicio.id }}</td> <!-- Asegúrate de usar el campo correcto para ID de servicio -->
+                    <td>{{ envio.id_factura.numero_guia }}</td> <!-- Cambiado a 'id_factura.numero_guia' -->
                 </tr>
                 {% empty %}
                 <tr>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuevo Envío</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #EDC8AE; /* Fondo color tierra claro */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h2, h3 {
+            color: #BC8F8F; /* Marrón rosado */
+        }
+        form {
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 5px;
+            width: 80%;
+            max-width: 800px;
+            margin: 20px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .form-group input[type="submit"] {
+            background-color: #BC8F8F;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="submit"]:hover {
+            background-color: #A87979;
+        }
+    </style>
+    <script>
+        function copyAddress() {
+            const sameAddressCheckbox = document.getElementById('same_address');
+            const clientAddress = document.getElementById('client_address');
+            const clientCity = document.getElementById('client_city');
+            const dispatchAddress = document.getElementById('dispatch_address');
+            const dispatchCity = document.getElementById('dispatch_city');
+
+            if (sameAddressCheckbox.checked) {
+                dispatchAddress.value = clientAddress.value;
+                dispatchCity.value = clientCity.value;
+            } else {
+                dispatchAddress.value = '';
+                dispatchCity.value = '';
+            }
+        }
+
+        function updateMonto() {
+            const servicioSelect = document.getElementById('id_id_servicio');
+            const montoInput = document.getElementById('id_monto');
+
+            servicioSelect.addEventListener('change', function() {
+                const selectedOption = servicioSelect.options[servicioSelect.selectedIndex];
+                const costoServicio = selectedOption.getAttribute('data-costo');
+                montoInput.value = costoServicio;
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', updateMonto);
+    </script>
+</head>
+<body>
+    <h2>Nuevo Envío</h2>
+    
+    <form method="post">
+        {% csrf_token %}
+        <h3>Datos de la Zona</h3>
+        {{ zona_form.as_p }}
+        <div class="form-group">
+            <input type="submit" name="save_zona" value="Guardar Zona">
+        </div>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        <h3>Datos del Cliente</h3>
+        {{ cliente_form.as_p }}
+        <div class="form-group">
+            <input type="submit" name="save_cliente" value="Guardar Cliente y Continuar">
+        </div>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        <h3>Datos del Servicio</h3>
+        {{ servicio_form.as_p }}
+        <div class="form-group">
+            <input type="submit" name="save_servicio" value="Guardar Servicio">
+        </div>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        <h3>Datos de la Factura</h3>
+        {{ factura_form.as_p }}
+        <div class="form-group">
+            <input type="submit" name="save_factura" value="Guardar Factura">
+        </div>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        <h3>Datos del Pago</h3>
+        {{ pago_form.as_p }}
+        <div class="form-group">
+            <input type="submit" name="save_pago" value="Guardar Pago">
+        </div>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        <h3>Datos del Envío</h3>
+        {{ envio_form.as_p }}
+        <div class="form-group">
+            <input type="submit" name="save_envio" value="Guardar Envío">
+        </div>
+    </form>
+
+    <form method="post">
+        {% csrf_token %}
+        <h3>Datos del Paquete</h3>
+        {{ paquete_form.as_p }}
+        <div class="form-group">
+            <input type="submit" name="save_paquete" value="Guardar Paquete">
+        </div>
+    </form>
+</body>
+</html>

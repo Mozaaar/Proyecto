@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Pedidos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #ffffff; /* Fondo color tierra claro */
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            background-color: #BC8F8F; /* Marrón rosado */
+            color: white;
+            padding: 20px;
+            width: 100%;
+            text-align: center;
+            margin: 0;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        nav ul li img {
+            width: 50px;
+            height: 50px;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            text-decoration: none;
+            color: #BC8F8F; /* Marrón rosado */
+            font-weight: bold;
+            font-size: 1.2em; /* Tamaño de texto más grande */
+            padding: 10px 20px; /* Tamaño de botón más grande */
+            border: 2px solid #BC8F8F; /* Borde marrón rosado */
+            border-radius: 5px;
+            background-color: #ffffff; /* Fondo color tierra claro para los botones */
+        }
+        nav ul li a:hover {
+            background-color: #BC8F8F; /* Color tierra más oscuro en hover */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1>Gestión de Pedidos</h1>
+    <nav>
+        <ul>
+            <li>
+                <img src="https://media.istockphoto.com/id/1363734940/es/foto/tres-cajas-de-cart%C3%B3n.jpg?s=1024x1024&w=is&k=20&c=-_MmW4CoPnxaMX6Ll6QCrelolBRv4KIPigdYvThtdng=" alt="Nuevo Envío">
+                <a href="{% url 'nuevo_envio' %}">Nuevo Envío</a>
+            </li>
+            <li>
+                <img src="https://media.istockphoto.com/id/1397445982/es/vector/concepto-de-pago-en-l%C3%ADnea-en-3d-con-banca-por-tel%C3%A9fono-m%C3%B3vil-f%C3%A1cil-transacci%C3%B3n-de-pago-de.jpg?s=1024x1024&w=is&k=20&c=d2D1TmTfBHnuad5Y9znU5tBeof45ZlytxKUEvkgcwhA=" alt="Listar Facturas">
+                <a href="{% url 'listar_envios' %}">Listar Envios</a>
+            </li>
+            <li>
+                <img src="https://media.istockphoto.com/id/1458178594/es/foto/actualizar-el-sistema-de-software-en-la-computadora-hombre-que-usa-el-programa-de.jpg?s=1024x1024&w=is&k=20&c=VWXDbax6kCznaxGjgDdXfOBknRghZkrzVHHKBNrVU0U=" alt="Actualizar Envío">
+                <a href="{% url 'actualizar_envio' pk=1 %}">Actualizar Envío</a>
+            </li>
+            <li>
+                <img src="https://media.istockphoto.com/id/1405389868/es/vector/documento-e-icono-3d-de-la-cruz-roja-documento-de-rechazo-decisi%C3%B3n-negativa-aislado-sobre-un.jpg?s=1024x1024&w=is&k=20&c=f5iAcghdIiePy-0VcWj0ARffmhUM8Z94EqKJAhOKjUE=" alt="Eliminar Envío">
+                <a href="{% url 'eliminar_envio' pk=1 %}">Eliminar Envío</a>
+            </li>
+        </ul>
+    </nav>
+</body>
+</html>
